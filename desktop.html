@@ -905,6 +905,7 @@ let last=performance.now();function loop(t){if(t-last>120){update();last=t}reque
 window.marsExploration={scan,collect,drawPins,drawWorldMarkers,getVisibleSites:()=>sites.filter((p,i)=>revealed.has(i)&&!found.has(i)),getProgress:()=>({battery,scans,found:[...found],revealed:[...revealed]}),restore:p=>{if(!p)return;battery=Math.max(0,Math.min(100,Number(p.battery)||0));scans=Number(p.scans)||0;found=new Set(p.found||[]);revealed=new Set(p.revealed||[]);ready=true;update()}};
 })();
 </script>
+<style>#caveCanvas,#buildCanvas,#waterCanvas,#finalCanvas,#beaconVisual{height:auto!important;width:100%!important;max-width:100%}#caveLab,#buildLab,#waterLab,#finalLab{overflow:auto}#caveLab>div,#buildLab>div,#waterLab>div,#finalLab>div{margin:auto;max-height:none}</style>
 <script>
 /* ===== Mars Guardians — enhanced outpost interiors (canvas room, machines, astronaut) ===== */
 (()=>{'use strict';
@@ -1164,7 +1165,7 @@ function frame(now){requestAnimationFrame(frame);if(!root.classList.contains('ac
  // prompts
  if(doneN<3){const b=btns[doneN];const near=Math.abs(left-(20+30*doneN))<14;const bob=Math.sin(T*4)*3;
   const tx=near?axp:b.offsetLeft+b.offsetWidth/2,ty=near?H*.955-H*.37:Math.max(H*.12,b.offsetTop+10);
-  c.font='bold 13px system-ui';c.textAlign='center';const txt=near?'Press F to repair':'Walk here \u25B8';const pw=c.measureText(txt).width+24;
+  c.font='bold 13px system-ui';c.textAlign='center';const txt=near?(document.body.classList.contains('touch')?'Tap Repair':'Press F to repair'):'Walk here \u25B8';const pw=c.measureText(txt).width+24;
   rr(tx-pw/2,ty+bob-26,pw,26,13,near?'rgba(30,120,70,.94)':'rgba(10,22,32,.9)',near?'#8ef4b0':'#ffda84',1.5);c.fillStyle='#fff';c.fillText(txt,tx,ty+bob-8);
   c.fillStyle=near?'#8ef4b0':'#ffda84';c.beginPath();c.moveTo(tx-6,ty+bob);c.lineTo(tx+6,ty+bob);c.lineTo(tx,ty+bob+8);c.fill()}
  else{c.font='bold 14px system-ui';c.textAlign='center';const txt='✓ ALL SYSTEMS RESTORED';const pw=c.measureText(txt).width+30;rr(W/2-pw/2,H*.44,pw,30,15,'rgba(30,120,70,.9)','#8ef4b0',2);c.fillStyle='#fff';c.fillText(txt,W/2,H*.44+20)}
