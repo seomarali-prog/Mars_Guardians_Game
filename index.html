@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+  <title>Mars Rover Game</title>
+</head>
+<body>
+<script>
+  // Detect the primary input device
+  const touchDevice = window.matchMedia(
+    "(pointer: coarse)"
+  ).matches;
+
+  // Open the appropriate game version
+  if (touchDevice) {
+    window.location.replace("mobile.html");
+  } else {
+    window.location.replace("desktop.html");
+  }
+</script>
+</body>
+</html>
